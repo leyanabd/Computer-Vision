@@ -1,0 +1,162 @@
+<html><head>
+<title> Programming Assignment 1 </title>
+<style>
+<!--
+body{
+font-family: 'Trebuchet MS', Verdana;
+}
+p{
+font-family: 'Trebuchet MS', Times;
+margin: 10px 10px 15px 20px;
+}
+h3{
+margin: 5px;
+}
+h2{
+margin: 10px;
+}
+h1{
+margin: 10px 0px 0px 20px;
+}
+div.main-body{
+align:center;
+margin: 30px;
+}
+hr{
+margin:20px 0px 20px 0px;
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+<a href="http://www.bu.edu"><img border="0" src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif" width="119" height="120"></a>
+</center>
+
+<h1>Programming Assignment 2</h1>
+<p> 
+ CS 585 HW 2 <br>
+ Leyan Omar Abdulhamid <br>
+ February 13th, 2020 <br>
+</p>
+
+<div class="main-body">
+<hr>
+<h2> Problem Definition </h2>
+<p>
+This program takes a template image of a hand gesture and creates a rectangle onto the source image as a repsonse to the recognition of the template's hand shape. The different template gestures available are the peace sign, thumbs down, thumbs up, and an open palm. It starts by developing a binary image of the template image, then proceeds to develop a binary image of the source image, and uses the opencv template matching function to develop the graphical display of a black rectangle around the best match. <br> 
+</p>
+
+<hr>
+<h2> Method and Implementation </h2>
+<p>
+The implementation starts by reading the template images in grayscale, then using the threshold function to make them binary such that the skin color would be white, and the background would be black. Afterwards, the source image is read in color, then runs the skin detection method to transform it into a binary image. Then, template matching is completed to look for the template hand gesture in the source image with opencv's built in template matching function. The final step involves showing the template match by drawing a black rectangle, then displaying the final product. 
+</p>
+
+<hr>
+<h2>Experiments</h2>
+<p>
+Besides some initial images to see whether the functions were working, the four main templates are "thumbs" = thumbs up, "down" = thumbs down, "palm" = open palm, and "peace" which is just the peace sign. VS 2017 kept giving off errors for no reason until I re-opened the program for every run. <br> 
+The peace sign and open palm worked the best out of the four gestures. Thumbs down did not work well when other areas of the skin color were present. Also, thumbs up did not do well if the thumbs were in the reverse direction. 
+<br>
+Overall the program runs fairly quickly, and successfully makes binary images of the templates. However, the skin detection really depends on the quality of the source images/frames. 
+<br> 
+</p> 
+
+<hr>
+<h2> Results</h2>
+<p> 
+<table>
+<tbody><tr><td colspan="3"><center><h3>Results</h3></center></td></tr>
+<tr>
+<td> Gesture </ td><td> Template Binary Image </td> 
+</tr>
+<tr>
+<td> Thumbs Up </td> 
+  <td> <img src="thumb-temp.jpg"> </td> 
+  <td> <img src="thumb-test.jpg"> </td>
+</tr> 
+<tr>
+  <td> Thumbs Down </td> 
+  <td> <img src="down-temp.jpg"> </td> 
+  <td> <img src="down-test.jpg"> </td>
+</tr> 
+<tr>
+  <td> Palm </td> 
+  <td> <img src="palm-temp.jpg"> </td> 
+  <td> <img src="palm-test.jpg"> </td>
+</tr> 
+<tr>
+  <td> Peace </td> 
+  <td> <img src="peace-temp.jpg"> </td> 
+  <td> <img src="peace-test.jpg"> </td>
+</tr> 
+</tbody></table> <br> <br> 
+And here are the confusion matrices: <br> 
+<p> 
+<table>
+<tbody><tr><td colspan="2"><center><h3>Results</h3></center></td></tr>
+<tr>
+<td> Gesture </ td><td> Confusion Matrix </td> <td> Result</td> 
+</tr>
+<tr>
+<td> Thumbs Up </td> 
+  <td> <img src="thumbs-matrix.jpg"> </td> 
+</tr> 
+<tr>
+  <td> Thumbs Down </td> 
+  <td> <img src="down-matrix.jpg"> </td> 
+</tr> 
+<tr>
+  <td> Palm </td> 
+  <td> <img src="palm-matrix.jpg"> </td> 
+</tr> 
+<tr>
+  <td> Peace </td> 
+  <td> <img src="peace-matrix.jpg"> </td> 
+</tr> 
+</tbody></table> <br> 
+</p>
+
+
+<hr>
+<h2> Discussion </h2>
+
+<p> 
+Discuss your method and results:
+</p><ul>
+One of the strengths would be the accuracy of the templates themselves. They are mostly dilated and eroded, which makes it easier to find template matches. One weakness would be the lack of support for moving gestures. 
+<br> 
+</ul>
+<p></p> 
+
+<hr>
+<h2> Conclusions </h2>
+<p>
+The methods are mostly successful and work quickly, however the program needs to be able to track moving gestures. 
+</p>
+
+
+<hr>
+<h2> Credits and Bibliography </h2>
+<p>
+Source code from our second and third labs: <br>
+http://www.cs.bu.edu/faculty/betke/cs585/ under Lab 2 and Lab 3. <br> 
+Accessed on February 11th, 2020.
+<br> 
+For the template matching, I used the opencv built in function approach : <br>
+https://docs.opencv.org/2.4/doc/tutorials/imgproc/histograms/template_matching/template_matching.html
+Accessed on February 12th, 2020. <br> 
+<br> 
+I also collaborated with Shalei Kumar for advice on the template matching and creating the binary images. <br> 
+</p><p>
+</p>
+
+<hr>
+</div>
+
+
+
+
+
