@@ -1,0 +1,145 @@
+<html><head>
+<title> CS585 Programming Assignment 4  </title>
+<style>
+<!--
+body{
+font-family: 'Trebuchet MS', Verdana;
+}
+p{
+font-family: 'Trebuchet MS', Times;
+margin: 10px 10px 15px 20px;
+}
+h3{
+margin: 5px;
+}
+h2{
+margin: 10px;
+}
+h1{
+margin: 10px 0px 0px 20px;
+}
+div.main-body{
+align:center;
+margin: 30px;
+}
+hr{
+margin:20px 0px 20px 0px;
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+<a href="http://www.bu.edu"><img border="0" src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif" width="119" height="120"></a>
+</center>
+
+<h1>Assignment Title</h1>
+<p> 
+ CS 585 HW 4 <br>
+ Leyan Abdulhamid<br>
+ Teammate: Shalei Kumar <br>
+ April 3rd 2020 <br> 
+</p>
+
+<div class="main-body">
+<hr>
+<h2> Problem Definition </h2>
+<p>
+The goal of the programming assignment was to track moving objects in two different video sequences. The tracking was accompanied by a visual representation of the path that the moving objects created. The first dataset was of bats in flight and the second displayed mouse muscle stem cells. The tracking had to employ a greedy algorithm and either an alpha-beta filter or a Kalman filter to estimate the state of each tracked object. <br>
+</p>
+
+<hr>
+<h2> Method and Implementation </h2>
+<p> For the bats dataset, we began by loading the images and storing the localization data in a dataframe. Afterwards, we chose to implement the Kalman Filter for predictions and created a cost matrix to find the smallest prediction value for each prediction. Then, we used a greedy algorithm to match the predictions with the measurements present in the image. Using the results, we drew lines for every object to track their paths.<br> 
+
+For the cells, we loaded the cell images and used a threshold to binarize them. Then, we used findContour to store the information of each blob and afterwards, calculated the centroid of each blob and stored them as measurements. Similarly to the bats dataset, we used the Kalman Filter for predictions and created a cost matrix. Finally, we used a greedy algorithm to match the predictions with the measurements in the image. To display the results, we drew lines for every object in the frame to track them.  <br>
+</p>
+
+<p>
+For the bats dataset: <br> <br> 
+speed(dataset) <br>
+kalmanFilter(image_frames, measurements) <br> 
+costMatrix(A,B) used for data association <br> 
+greedyAlgorithm(matrix) <br>
+data_association(predictions, measures) <br>
+bat_track(frames, track_info) <br> 
+save_images(dir, frames) which stores the frames in a directory and creates a video <br> 
+
+For the cells dataset: <br> <br> 
+All functions in the bats dataset, except for bat_track, along with the following: <br> 
+contour(img) which finds the contours in the image and returns the coordinates <br> 
+centroid(current_frame) <br> 
+trackcells(frames, track_info) <br> <br> 
+</p>
+
+<hr>
+<h2>Experiments</h2>
+<p>
+Once the code was running we simply inspected the videos using the source frames from the class website to see what was working and what wasn't working. See under the Results header. <br> </p>
+
+
+<hr>
+<h2> Results</h2>
+
+
+<h3> Part 1 - Tracking Bats </h3>
+The video is available in the same directory as this report. The following image is the last frame tracked.<br> 
+<img src="lastframe-bats.jpeg">
+<h3> Part 2 - Tracking Cells </h3> 
+The video is available in the same directory as this report. The following image is the last frame tracked.<br>
+<img src="lastframe-cells.jpeg"> 
+
+<hr>
+
+<h2> Discussion </h2>
+
+<p> 
+Discuss your method and results:
+</p><ul>
+Discussion Topics from the assignment page: <br> 
+1. Unfortunately, we did not have time to address the special case of when two objects collide. At the moment when two moving objects occlude each other, the tracking lines switch or one of the lines disappears.  On the other hand, we were able to successfully implement the case for when a new object enters the frame. <br> 
+
+2. This was done within the Kalman filter by comparing the number of measurements and predictions. If the number of measurements was greater than the number of predictions, that meant we had a new object and required a new track. Meanwhile if the number of measurements was less than the number of predictions, that meant an object had left the frame and we needed to delete the track. The deletion is not working exactly, but track lines are definitely disappearing as bats grow smaller and more distant once they're about to leave the frame. <br> 
+
+3. See 1. above. <br> 
+
+4. If new objects entered the frame, then the system was able to track them by comparing the number of predictions to the number of measurements. <br> 
+
+5. We believe that modelling the velocity of the objects would be beneficial because the objects can travel at different speeds. It may also help with the case of occlusion. <br> 
+
+Tracking the cells was somewhat difficult due to the thresholding and the brightness of the pixels. Since the pixel values were very similar, parts of the bottom half of the dish were classified as objects. In order to adjust that, we had to restrict the size of the object being tracked. <br> 
+
+</ul>
+<p></p>
+
+<hr>
+<h2> Conclusions </h2>
+
+<p>
+Based on our results and discussion, we believe that we were relatively successful in tracking bats. If we had more time, we could have implemented more precise segmentation functions for the cells dataset to yield more accurate results. We also would have lengthened the tracking lines so a complete history of tracking would be shown rather than a temporary one. 
+</p>
+
+
+<hr>
+<h2> Credits and Bibliography </h2>
+<p>
+To implement the Kalman filter: <br> 
+http://cs-people.bu.edu/sjzhao/CS585/A4/code/HW4_TrackingCells/kalman_filter.py <br> 
+
+To create the videos: <br> 
+ https://theailearner.com/2018/10/15/creating-video-from-images-using-opencv-python/ <br> 
+
+</p>
+
+<p>
+This assignment was completed in collaboration with Shalei Kumar <br> 
+</p>
+<hr>
+</div>
+
+
+
+
+
+</body></html>
